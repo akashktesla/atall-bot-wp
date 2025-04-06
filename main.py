@@ -25,17 +25,13 @@ for i in group_name:
     search.send_keys(i)
 time.sleep(2)
 
-# # Click on the group
 group = driver.find_element(By.XPATH, f'//span[@title="{group_name}"]')
 group.click()
 
 everyone = ["@ani","@siva", "@ct", "@authi","@sneha","@dhana", "@dhiv", "@dins", "@gokul", "@harini", "@jas","@jel", "@karthi", "@po", "@soap","@vats","@vis", "@sriva"]
-# Extract text from it
 flag = True
 while flag:
-    # Get all message bubbles
     messages = driver.find_elements(By.XPATH, '//div[contains(@class, "message-in") or contains(@class, "message-out")]')
-    # Get last message
     last_msg = messages[-1]
     text = last_msg.text
     if "@all" in text.lower():
@@ -50,5 +46,5 @@ while flag:
         msg_box.send_keys(Keys.ENTER)      
 
     print("Command:",text)
-    # time.sleep(1)
+    time.sleep(0.25)
 
