@@ -1,3 +1,4 @@
+import re
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
@@ -18,6 +19,7 @@ time.sleep(5)
 group_name = "A120 4 lyf ❤️"  # replace this with actual group name
 search = driver.find_element(By.XPATH, '//div[@contenteditable="true"]')
 search.click()
+
 for i in group_name:
     search.send_keys(i)
 time.sleep(2)
@@ -29,7 +31,7 @@ everyone = ["@ani","@siva", "@ct", "@authi","@sneha","@dhana", "@dhiv", "@dins",
 girls = ["@ani", "@authi","@sneha", "@dhiv", "@harini", "@sriva"]
 boys = ["@siva", "@ct", "@dhana",  "@dins", "@gokul",  "@jas","@jel", "@karthi", "@po", "@soap","@vats","@vis"]
 mass = ["@siva"]
-loosu = ["@ct"]
+loosu = ["@ct"] 
 gays = ["@goku","@siva","@po"]
 rizzler = ["@vat"]
 alien = ["@dhiv"]
@@ -37,143 +39,168 @@ nigga = ["@vis"]
 wolf = ["@authi"]
 spirit = ["@sneha"]
 blackshirt = ["@karthi"]
+karadi = ["@dhana"]
 
 flag = True
 while flag:
     messages = driver.find_elements(By.XPATH, '//div[contains(@class, "message-in") or contains(@class, "message-out")]')
     last_msg = messages[-1]
     text = last_msg.text
-    if "@all" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in everyone:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+    pattern = r"(@[a-z]+)\((\d+)\)?"
+    match = re.search(pattern, text)
+    if match:
+        cmd = match.group(1)
+        try:
+            number = int(match.group(2))
+        except:
+            number = 1
+    else:
+        number = 0
 
-    elif "@boys" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in boys:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+    for i in range(number):
+        if cmd in ["@all"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in everyone:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@girls" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in girls:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@boys"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in boys:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@gays" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in gays:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@girls"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in girls:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@mass" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in mass:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@gays"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in gays:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@loosu" in text.lower() or "@ct" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in loosu:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
-    elif "@nigga" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in nigga:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
-    elif "@rizzler" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in rizzler:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@mass"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in mass:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@spirit" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in spirit:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@loosu","@ct"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in loosu:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@nigga"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in nigga:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@gokul" in text.lower() or "@alien" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in alien:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@rizzler"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in rizzler:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@wolf" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in wolf:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@spirit"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in spirit:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
-    elif "@blackshirt" in text.lower():
-        msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
-        msg_box.click()
-        for i in blackshirt:
-            for j in i:
-                msg_box.send_keys(j)
-            msg_box.send_keys(Keys.TAB)      
-            msg_box.send_keys(",")
-            msg_box.send_keys(" ")
-        msg_box.send_keys(Keys.ENTER)      
+        elif cmd in ["@alien"] or "@gokul" in text.lower():
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in alien:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
+
+        elif cmd in ["@wolf"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in wolf:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
+
+        elif cmd in ["@blackshirt"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in blackshirt:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
+
+        elif cmd in ["@karadi"]:
+            msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+            msg_box.click()
+            for i in karadi:
+                for j in i:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.TAB)      
+                msg_box.send_keys(",")
+                msg_box.send_keys(" ")
+            msg_box.send_keys(Keys.ENTER)      
 
 
-    print("Command:",text)
+        print(f"Command: {cmd}, Number: {number}")
     time.sleep(0.25)
 
