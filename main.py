@@ -46,12 +46,12 @@ while flag:
     messages = driver.find_elements(By.XPATH, '//div[contains(@class, "message-in") or contains(@class, "message-out")]')
     last_msg = messages[-1]
     text = last_msg.text
-    pattern = r"(@[a-z]+)\((\d+)\)?"
+    pattern = r"(@[a-z]+)(\((\d+)\))?"
     match = re.search(pattern, text)
     if match:
         cmd = match.group(1)
         try:
-            number = int(match.group(2))
+            number = int(match.group(3))
         except:
             number = 1
     else:
