@@ -49,7 +49,7 @@ while flag:
 
 
     cmd_pattern = r"\/([a-z]+)\((.+)\)"
-    match = re.search(pattern, text)
+    match = re.search(cmd_pattern, text)
     if match:
         cmd = match.group(1)
         param = match.group(2)
