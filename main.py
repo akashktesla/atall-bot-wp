@@ -46,6 +46,24 @@ while flag:
     messages = driver.find_elements(By.XPATH, '//div[contains(@class, "message-in") or contains(@class, "message-out")]')
     last_msg = messages[-1]
     text = last_msg.text
+
+
+    cmd_pattern = r"\/([a-z]+)\((.+)\)"
+    match = re.search(pattern, text)
+    if match:
+        cmd = match.group(1)
+        param = match.group(2)
+
+        if cmd=="repeat":
+             payload,number= param.split(",")
+             for i in range(int(number)):
+                msg_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@data-tab="10"]')
+                msg_box.click()
+                for j in payload:
+                    msg_box.send_keys(j)
+                msg_box.send_keys(Keys.ENTER)      
+
+
     pattern = r"(@[a-z]+)(\((\d+)\))?"
     match = re.search(pattern, text)
     if match:
